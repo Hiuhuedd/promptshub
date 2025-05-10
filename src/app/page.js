@@ -78,7 +78,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-12 px-4 text-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900 dark:to-indigo-900">
+      <section className="relative py-12 px-4 text-center ">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-bold mb-4">Discover High-Value AI Prompts</h1>
           <p className="text-lg md:text-xl opacity-90">Search expert-crafted prompts across 10+ categories</p>
