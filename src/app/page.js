@@ -9,15 +9,18 @@ export const CATEGORIES = [
   'All',
   'Software & Web Development',
   'Sales',
-  'Design',
-  'AI & Chatbots',
   'Marketing & Sales Automation',
+  'Design','Chatbots',
+  
+  'Data Science & Machine Learning',
+  'Research & Analysis',
+  'AI & Automation',
   'Online Businesses & Startups',
   'Finance & Analytics',
-  'E-commerce & Online Stores',
+  'E-commerce',
   'HR & Hiring',
-  'Course Creators & Coaches',
-  'Creator & Personal Brands',
+  'Course Creation',
+  'Personal Brands',
 ];
 
 export default function Home() {
@@ -58,10 +61,10 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-all duration-300">
+    <div className="home">
       {/* Navbar */}
-      <nav className="sticky top-0 z-10 flex justify-between items-center p-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-        <a href="/" className="text-xl font-bold text-blue-600 dark:text-blue-400">
+      <nav className="navbar">
+        <a href="/" className="navbar-logo">
           PromptHub
         </a>
         <button
@@ -69,54 +72,51 @@ export default function Home() {
             console.log('Theme toggle clicked');
             toggleTheme();
           }}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
+          className="theme-toggle"
           aria-label="Toggle theme"
           title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
         >
-          {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          {theme === 'light' ? <Moon className="theme-icon" /> : <Sun className="theme-icon" />}
         </button>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-12 px-4 text-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900 dark:to-indigo-900">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">Discover High-Value AI Prompts</h1>
-          <p className="text-lg md:text-xl opacity-90">Search expert-crafted prompts across 10+ categories</p>
+      <section className="hero">
+        <div className="hero-content">
+          <h1 className="hero-headline">Discover High-Value AI Prompts</h1>
+          <p className="hero-subheadline">Search expert-crafted prompts across 100+ categories</p>
         </div>
       </section>
 
       {/* Search Section */}
-      <section className="py-8 px-4">
-        <div className="max-w-3xl mx-auto">
-          <form className="flex gap-2 mb-6 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-full p-2 shadow-md">
+      <section className="search-section">
+        <div className="container">
+          <form className="search-form">
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search prompts (e.g., 'lead generation')"
-              className="flex-1 px-4 py-2 rounded-full bg-transparent focus:outline-none"
+              className="search-input"
             />
-            <button
-              type="submit"
-              className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
-            >
-              <Search className="w-5 h-5" />
+            <span type="" className="search-button">
+              <Search className="search-icon" />
               Search
-            </button>
+            </span>
           </form>
           <FilterTabs filters={CATEGORIES} activeFilter={activeFilter} onFilterChange={setActiveFilter} />
         </div>
       </section>
 
       {/* Content Grid */}
-      <main className="py-8 px-4">
-        <div className="max-w-6xl mx-auto">
+      <main className="main">
+        <div className="container">
           {query && !filteredPrompts.length ? (
-            <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+            <div className="no-results">
               No prompts found matching "{query}"
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="content-grid">
               {filteredPrompts.map((prompt) => (
                 <ContentCard key={prompt.id} item={prompt} />
               ))}

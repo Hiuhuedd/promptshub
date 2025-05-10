@@ -1,0 +1,52 @@
+/* Filter tabs styles */
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    margin-top: 1.5rem;
+  }
+  
+  .filter-tab {
+    padding: 0.2rem 1rem;
+    border: 1px solid #e2e8f0; /* --border-color (light) */
+    background: #ffffff; /* --card-bg (light) */
+    border-radius: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1f2937; /* --text-color (light) */
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  
+  .filter-tab:hover {
+    background: #2563eb; /* --primary-hover (light) */
+    transform: scale(1.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-tab.active {
+    background: #3b82f6; /* --primary-color (light) */
+    color: #1f2937; /* --text-color (light) */
+    border-color: #3b82f6; /* --primary-color (light) */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Dark theme styles */
+  [data-theme="dark"] .filter-tab {
+    border: 1px solid #4b5563; /* --border-color (dark) */
+    background: #2d3748; /* --card-bg (dark) */
+    color: #f1f5f9; /* --text-color (dark) */
+  }
+  
+  [data-theme="dark"] .filter-tab:hover {
+    background: #2563eb; /* --primary-hover (same for dark) */
+  }
+  
+  [data-theme="dark"] .filter-tab.active {
+    background: #3b82f6; /* --primary-color (same for dark) */
+    color: #f1f5f9; /* --text-color (dark) */
+    border-color: #3b82f6; /* --primary-color (same for dark) */
+  }
