@@ -1,6 +1,6 @@
 export default function FilterTabs({ filters, activeFilter, onFilterChange }) {
   return (
-    <div className="flex justify-center gap-2 mb-4 w-[100%]">
+    <div className="flex flex-wrap justify-center gap-2 mb-4">
       {filters.map((filter) => (
         <button
           key={filter}
