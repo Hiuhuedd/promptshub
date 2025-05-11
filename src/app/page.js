@@ -10,7 +10,7 @@ export const CATEGORIES = [
   'Software & Web Development',
   'Sales',
   'Marketing & Sales Automation',
-  'Design','Chatbots','Images','Videos',
+  'Design','Chatbots','Images','Videos','Ads',
   
   'Data Science & Machine Learning',
   'Research & Analysis',
