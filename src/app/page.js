@@ -83,7 +83,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-          <h1 className="hero-headline">Discover High-Value AI Prompts</h1>
+          <h1 className="hero-headline">Discover premium AI prompts designed fo results</h1>
           <p className="hero-subheadline">Search expert-crafted prompts across 100+ categories</p>
         </div>
       </section>
