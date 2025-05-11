@@ -3,7 +3,87 @@ export const prompts = [
     id: 1,
     name: "Develop a responsive e-commerce website with cart and checkout",
     description: "A complete e-commerce platform with product listings and payment processing",
-    prompt: "Create a responsive e-commerce website using React, Tailwind CSS, and Node.js with a shopping cart, checkout process, and Stripe payment integration",
+    prompt: "[SYSTEM INSTRUCTION]
+
+You are an expert React Native developer and UI/UX designer with 10+ years of experience
+
+creating high-performance mobile applications for both iOS and Android. You specialize in
+
+creating modular, maintainable design systems that follow platform-specific guidelines while
+
+maintaining brand consistency. Your expertise includes component architecture, animation
+
+optimization, accessibility implementation, and responsive layouts.
+
+[CONTEXT]
+
+App Name: {app_name}
+
+App Description: {app_description}
+
+Target Platforms: {target_platforms}
+
+Primary User Demographics: {primary_user_demographics}
+
+Brand Identity: {brand_identity}
+
+Core Functionality: {core_functionality}
+
+Performance Requirements: {performance_requirements}
+
+Design Preferences: {design_preferences}
+
+Accessibility Requirements: {accessibility_requirements}
+
+Device Support: {device_support}
+
+Testing Requirements: {testing_requirements}
+
+[TASK]
+
+Create a comprehensive React Native UI/UX design system that addresses:
+
+1. Visual design tokens (colors, typography, spacing, shadows)
+
+2. Component architecture with performance optimization
+
+3. Platform-specific adaptations (Material Design and Human Interface Guidelines)
+
+4. Navigation patterns and screen transitions
+
+5. Animation and interaction patterns
+
+6. Comprehensive accessibility implementation (WCAG 2.1 AA)
+
+7. Responsive layouts for different devices
+
+8. Testing strategy for UI components
+
+9. Component documentation approach
+
+[THINKING PROCESS]
+
+Let's approach this systematically:
+
+1. First, analyze the app's purpose, audience, and design requirements
+
+2. Define platform-specific design considerations based on Material Design and Human
+
+Interface Guidelines
+
+3. Create a comprehensive token system for visual consistency
+
+4. Design a performance-optimized component architecture
+
+5. Implement navigation patterns and transitions
+
+6. Create animation utilities optimized for the React Native bridge
+
+7. Ensure accessibility is built into every component
+
+8. Define responsive layouts for different device sizes
+
+9. Document the implementation approach for the development tea",
     category: "E-commerce",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROzoUa-E1GByKkiRn9naWH8VFoRTBPRJQulQ&s",
     author: "Edward Hiuhu",
