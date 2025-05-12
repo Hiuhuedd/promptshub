@@ -1,15 +1,59 @@
 'use client';
 import { useState } from 'react';
 import { X, Copy, Share2 } from 'lucide-react';
+import { useUser } from '@clerk/nextjs';
+import { doc, setDoc, arrayUnion } from 'firebase/firestore';
+import { db } from '../page'; // Import db from Home.jsx
 
 export default function ContentCard({ item }) {
+  const { isSignedIn, user, isLoaded } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState(null);
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(item.prompt);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  // Debug: Log db and item.category
+  console.log('Firestore db:', db);
+  console.log('Item category:', item.category);
+
+  const copyToClipboard = async () => {
+    try {
+      // Validate inputs
+      if (!item.category) {
+        throw new Error('Prompt category is missing');
+      }
+      if (!item.name) {
+        throw new Error('Prompt name is missing');
+      }
+      if (!db) {
+        throw new Error('Firestore instance is undefined');
+      }
+
+      // Copy prompt to clipboard
+      await navigator.clipboard.writeText(item.prompt);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+
+      // Save to Firestore
+      if (isLoaded) {
+        const email = isSignedIn ? user.primaryEmailAddress?.emailAddress || '' : '';
+        const savedDocRef = doc(db, 'saved', item.category);
+        await setDoc(
+          savedDocRef,
+          {
+            copies: arrayUnion({
+              promptName: item.name,
+              email: email,
+              timestamp: new Date(),
+            }),
+          },
+          { merge: true }
+        );
+        console.log(`Saved prompt "${item.name}" to Firestore under category "${item.category}"`);
+      }
+    } catch (error) {
+      console.error('Error copying prompt or saving to Firestore:', error);
+      setError(error.message || 'Failed to save prompt');
+    }
   };
 
   const formattedDate = new Date(item.dateCreated).toLocaleDateString('en-US', {
@@ -33,17 +77,14 @@ export default function ContentCard({ item }) {
         )}
         <div className="card-header">
           <h3 className="card-title">{item.name}</h3>
-         
           {item.description && <p className="card-body">{item.description}</p>}
           {item.tags && item.tags.length > 0 && (
             <div className="card-tags">
-               <div className="card-meta">
-            <span>{item.category}</span>
-            {/* <span className="card-meta-divider">•</span>
-            <span>{formattedDate}</span> */}
-            <span className="card-meta-divider">•</span>
-            <span>{item.difficulty}</span>
-          </div>
+              <div className="card-meta">
+                <span>{item.category}</span>
+                <span className="card-meta-divider">•</span>
+                <span>{item.difficulty}</span>
+              </div>
               {item.tags.map((tag, index) => (
                 <span key={index} className="card-tag">
                   {tag}
@@ -109,6 +150,7 @@ export default function ContentCard({ item }) {
                 <button className="modal-button modal-button-share">
                   <Share2 className="modal-button-icon" />
                 </button>
+                {error && <div className="modal-error">{error}</div>}
               </div>
             </div>
           </div>

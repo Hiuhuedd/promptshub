@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
+import ClerkWrapper from "./ClerkWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,20 +18,20 @@ export const metadata = {
   description: "Discover and search high-value AI prompts across multiple categories",
   icons: {
     icon: [
-      { url: "./image.jpg" }, // Standard favicon for browsers
-      { url: "./image.jpg", type: "image/png" }, // Fallback for modern browsers
+      { url: "/image.png" },
+      { url: "/image.png", type: "image/png" },
     ],
     apple: [
-      { url: "/apple-touch-icon.png" }, // iOS devices
+      { url: "/apple-touch-icon.png" },
     ],
-    shortcut: ["./image.jpg"], // Legacy browsers
+    shortcut: ["/image.png"],
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-        <Head>
+      <Head>
         <title>PromptHub</title>
         <meta name="description" content="Discover and search high-value AI prompts across multiple categories" />
         <link rel="icon" href="/image.png" type="image/png" />
@@ -39,16 +40,16 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}`}
+        style={{
+          margin: 0,
+          minHeight: "100vh",
+          position: "relative",
+          fontFamily: "'Poppins', sans-serif",
+        }}
       >
-        {children}
+        <ClerkWrapper>{children}</ClerkWrapper>
       </body>
     </html>
   );
 }
-
-
-
-
-
-
