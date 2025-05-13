@@ -28,16 +28,16 @@ export const CATEGORIES = [
   "Software & Web Development",
   "Sales",
   "Marketing & Sales Automation",
-  "Design",
+  "Design & UX",
+  "Productivity & Time Management",
   "Chatbots",
-  "Data Science & Machine Learning",
+  "Social Media",
+  "Content Creation",
+  "SEO & SEM",
   "Research & Analysis",
   "AI & Automation",
   "Online Businesses & Startups",
-  "Finance & Analytics",
   "E-commerce",
-  "HR & Hiring",
-  "Course Creation",
   "Personal Brands",
 ];
 
@@ -149,7 +149,24 @@ export default function Home() {
 
   // Wait for Clerk to load auth state
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return(
+      <nav className="navbar">
+      <a href="/" className="navbar-logo">
+        PromptHub
+      </a>
+      <button
+        onClick={() => {
+          console.log("Theme toggle clicked");
+          toggleTheme();
+        }}
+        className="theme-toggle"
+        aria-label="Toggle theme"
+        title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+      >
+        {theme === "light" ? <Moon className="theme-icon" /> : <Sun className="theme-icon" />}
+      </button>
+    </nav>
+    )
   }
 
   return (
